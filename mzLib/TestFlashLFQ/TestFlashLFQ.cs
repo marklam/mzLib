@@ -29,6 +29,8 @@ namespace Test
         [SetUp]
         public static void Setuppp()
         {
+            Readers.x64.Initializer.Initialize();
+
             Stopwatch = new Stopwatch();
             Stopwatch.Start();
         }
@@ -71,7 +73,7 @@ namespace Test
             // the exact same intensity, and flags this as a mistake, and sets their protein intensities
             // to NaN on purpose. this is to a correct an artifact of median polish,
             // when protein quantities are sometimes erroneously marked as identical in 2+ files.
-            // if the protein quantities are *actually* exactly identical, then 
+            // if the protein quantities are *actually* exactly identical, then
             // they will be marked as NaN by mistake. this rarely happens in real life, but it happens
             // in simple unit tests like this.
 
@@ -130,7 +132,7 @@ namespace Test
             // the exact same intensity, and flags this as a mistake, and sets their protein intensities
             // to NaN on purpose. this is to a correct an artifact of median polish,
             // when protein quantities are sometimes erroneously marked as identical in 2+ files.
-            // if the protein quantities are *actually* exactly identical, then 
+            // if the protein quantities are *actually* exactly identical, then
             // they will be marked as NaN by mistake. this rarely happens in real life, but it happens
             // in simple unit tests like this.
 
@@ -189,7 +191,7 @@ namespace Test
             // the exact same intensity, and flags this as a mistake, and sets their protein intensities
             // to NaN on purpose. this is to a correct an artifact of median polish,
             // when protein quantities are sometimes erroneously marked as identical in 2+ files.
-            // if the protein quantities are *actually* exactly identical, then 
+            // if the protein quantities are *actually* exactly identical, then
             // they will be marked as NaN by mistake. this rarely happens in real life, but it happens
             // in simple unit tests like this.
 
@@ -248,7 +250,7 @@ namespace Test
             // the exact same intensity, and flags this as a mistake, and sets their protein intensities
             // to NaN on purpose. this is to a correct an artifact of median polish,
             // when protein quantities are sometimes erroneously marked as identical in 2+ files.
-            // if the protein quantities are *actually* exactly identical, then 
+            // if the protein quantities are *actually* exactly identical, then
             // they will be marked as NaN by mistake. this rarely happens in real life, but it happens
             // in simple unit tests like this.
 
@@ -479,7 +481,7 @@ namespace Test
 
 
         /// <summary>
-        /// This test MatchBetweenRuns by creating two fake mzML files and a list of fake IDs. 
+        /// This test MatchBetweenRuns by creating two fake mzML files and a list of fake IDs.
         /// There are multiple sets of IDs, where most are shared between the two runs but one+ is/are missing
         /// MBR is tested by ensuring that IDs are transferred between runs
         /// </summary>
@@ -487,15 +489,15 @@ namespace Test
         public static void TestFlashLfqMatchBetweenRuns()
         {
             List<string> filesToWrite = new List<string> { "mzml_1", "mzml_2" };
-            List<string> pepSequences = new List<string> 
-                { 
-                "PEPTIDE", 
-                "PEPTIDEV", 
-                "PEPTIDEVV", 
+            List<string> pepSequences = new List<string>
+                {
+                "PEPTIDE",
+                "PEPTIDEV",
+                "PEPTIDEVV",
                 "TARGETPEP",
                 "PEPTIDEVVV",
-                "PEPTIDEVVVV", 
-                "PEPTIDEVVVVA", 
+                "PEPTIDEVVVV",
+                "PEPTIDEVVVVA",
                 "PEPTIDEVVVVAA"
             };
             double intensity = 1e6;
@@ -628,7 +630,7 @@ namespace Test
                 rtDiffs.Add(Math.Abs(file1Rt[i] - file2Rt[i]));
             }
 
-            // The ambiguous engine tests that a non-confident ID (i.e., a PSM that didn't make the peptide level fdr cutoff) 
+            // The ambiguous engine tests that a non-confident ID (i.e., a PSM that didn't make the peptide level fdr cutoff)
             // gets overwritten by a MBR transfer of a confident ID, and that non-confident IDs are overwriteen by confident MS2 ids
             results = engineAmbiguous.Run();
             Assert.False(results.PeptideModifiedSequences.Select(kvp => kvp.Key).Contains("DECOYPEP"));
@@ -1286,12 +1288,12 @@ namespace Test
         [Test]
         public static void TestMedianPolish()
         {
-            double[][] array2D = new double[][] { 
+            double[][] array2D = new double[][] {
                 new double[] { 0, 0, 0 },
-                new double[] { 0, 1, 2 }, 
-                new double[] { 0, 3, 4 }, 
-                new double[] { 0, 5, 6 }, 
-                new double[] { 0, 7, 8 } 
+                new double[] { 0, 1, 2 },
+                new double[] { 0, 3, 4 },
+                new double[] { 0, 5, 6 },
+                new double[] { 0, 7, 8 }
             };
 
             FlashLfqResults.MedianPolish(array2D);
@@ -1795,7 +1797,7 @@ namespace Test
         {
             // this represents the intensities of peptides from a single protein
             var peptideIntensities = new double[][]
-            { 
+            {
                 // each column is a sample, each row is a peptide
                 new double[] { 0,    1000 },
                 new double[] { 1000, 0 }
@@ -1816,7 +1818,7 @@ namespace Test
         {
             // this represents the intensities of peptides from a single protein
             var peptideIntensities = new double[][]
-            { 
+            {
                 // each column is a sample, each row is a peptide
                 new double[] { 9796546,     9852023.625 },
                 new double[] { 2193142.286, 2132802.28 },
@@ -1856,7 +1858,7 @@ namespace Test
         public static void TestMedianPolish_WithSimilarIntensityRanks()
         {
             var peptideIntensities = new double[][]
-            { 
+            {
                 // each column is a sample, each row is a peptide
                 new double[] { 19007964.63, 18208648.31, 0 },
                 new double[] { 14890408.31, 14411359.03, 14910408.31 },
@@ -1891,7 +1893,7 @@ namespace Test
         public static void TestMedianPolish_TrueChanger()
         {
             var peptideIntensities = new double[][]
-            { 
+            {
                 // each column is a sample, each row is a peptide
                 new double[] { 1000, 1010, 2050, 2010 },
                 new double[] { 2000, 1900, 3900, 4100 },
@@ -1915,7 +1917,7 @@ namespace Test
         {
             // this represents the intensities of peptides from a single protein
             var peptideIntensities = new double[][]
-            { 
+            {
                 // each column is a sample, each row is a peptide
                 new double[] { 9796546,     9852023.625, 0 },
                 new double[] { 2193142.286, 2132802.28,  0 },
@@ -1939,7 +1941,7 @@ namespace Test
         {
             // this represents the intensities of peptides from a single protein
             var peptideIntensities = new double[][]
-            { 
+            {
                 // each column is a sample, each row is a peptide
                 new double[] { 9796546 },
             };
@@ -1955,7 +1957,7 @@ namespace Test
         {
             // this represents the intensities of peptides from a single protein
             var peptideIntensities = new double[][]
-            { 
+            {
                 // each column is a sample, each row is a peptide
                 new double[] { 9796546, 0 },
             };
@@ -2039,11 +2041,11 @@ namespace Test
 
             Assert.Throws<NotImplementedException>(() =>
             {
-                var engine = new ProteinQuantificationEngine(res, maxThreads: 1, 
+                var engine = new ProteinQuantificationEngine(res, maxThreads: 1,
                     controlCondition: "a", randomSeed: 0, foldChangeCutoff: 0.1, pairedSamples:true);
                 engine.Run();
             });
         }
-        
+
     }
 }

@@ -9,19 +9,29 @@ using MzLibUtil;
 
 namespace Readers
 {
-    public static class MsDataFileReader 
+    public static class MsDataFileReader
     {
+        private static readonly Dictionary<SupportedFileType, Func<string, MsDataFile>> _fileTypeToReaderFactory = new Dictionary<SupportedFileType, Func<string,MsDataFile>>
+        {
+            { SupportedFileType.MzML, filePath => new Mzml(filePath) },
+            { SupportedFileType.Mgf, filePath => new Mgf(filePath) },
+        };
+
+        public static void RegisterReader(SupportedFileType fileType, Func<string, MsDataFile> readerFactory)
+        {
+            _fileTypeToReaderFactory[fileType] = readerFactory;
+        }
 
         public static MsDataFile GetDataFile(string filePath)
         {
-            return filePath.ParseFileType() switch
+            if (!_fileTypeToReaderFactory.TryGetValue(filePath.ParseFileType(), out var readerFactory))
             {
-                SupportedFileType.ThermoRaw => new ThermoRawFileReader(filePath),
-                SupportedFileType.MzML => new Mzml(filePath),
-                SupportedFileType.Mgf => new Mgf(filePath),
-                SupportedFileType.BrukerD => new BrukerFileReader(filePath), 
-                _ => throw new MzLibException("File type not supported"),
-            };
+                throw new MzLibException("File type not supported");
+            }
+            else
+            {
+                return readerFactory(filePath);
+            }
         }
     }
 }

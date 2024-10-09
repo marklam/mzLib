@@ -13,7 +13,6 @@ using Omics.Modifications;
 using Proteomics.AminoAcidPolymer;
 using Proteomics;
 using static System.Net.Mime.MediaTypeNames;
-using ThermoFisher.CommonCore.Data.Interfaces;
 using Readers.ExternalResults.BaseClasses;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
@@ -96,7 +95,7 @@ namespace Readers
 
         /// <summary>
         /// MsFragger v22.0 output renames the header "PeptideProphet Probability" as just "Probability".
-        /// Headers are mutually exclusive, will not both occur in the same file. 
+        /// Headers are mutually exclusive, will not both occur in the same file.
         /// </summary>
         [Name("PeptideProphet Probability", "Probability")]
         public double PeptideProphetProbability { get; set; }
@@ -170,7 +169,7 @@ namespace Readers
 
         [Ignore] public List<(string, string, string)> ProteinGroupInfos
         {
-            get 
+            get
             {
                 _proteinGroupInfos ??= AddProteinGroupInfos();
                 return _proteinGroupInfos;
@@ -180,7 +179,7 @@ namespace Readers
         /// <summary>
         /// Creates a list of tuples, each of which represents a protein.
         /// Each tuple contains the accession number, gene name, and organism.
-        /// These parameters are used to create a ProteinGroup object, 
+        /// These parameters are used to create a ProteinGroup object,
         /// which is needed to make an identification.
         /// </summary>
         /// <returns></returns>

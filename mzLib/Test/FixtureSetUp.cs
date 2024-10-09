@@ -31,6 +31,8 @@ namespace Test
         [OneTimeSetUp]
         public void Setup()
         {
+            Readers.x64.Initializer.Initialize();
+
             Loaders.LoadElements();
 
             Assert.That(Thread.CurrentThread.CurrentCulture == CultureInfo.InvariantCulture);
