@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using MzLibUtil;
 using Omics.Digestion;
 using Omics.Modifications;
@@ -11,20 +12,25 @@ namespace Proteomics.ProteolyticDigestion
 {
     public static class ProteaseDictionary
     {
-        static ProteaseDictionary()
+        private static Lazy<Dictionary<string, Protease>> _dictionary = new (LoadDefaultProteaseDictionary, LazyThreadSafetyMode.ExecutionAndPublication);
+
+        private static Dictionary<string, Protease> LoadDefaultProteaseDictionary()
         {
             var pathToProgramFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
             string dataDirectory = !String.IsNullOrWhiteSpace(pathToProgramFiles) && AppDomain.CurrentDomain.BaseDirectory.Contains(pathToProgramFiles)
-                    && !AppDomain.CurrentDomain.BaseDirectory.Contains("Jenkins") ?
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MetaMorpheus") :
-                AppDomain.CurrentDomain.BaseDirectory;
+                && !AppDomain.CurrentDomain.BaseDirectory.Contains("Jenkins") ?
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MetaMorpheus") :
+                    AppDomain.CurrentDomain.BaseDirectory;
 
-            string path = Path.Combine(dataDirectory, "ProteolyticDigestion", "proteases.tsv");          
-            Dictionary = LoadProteaseDictionary(path);
-        
+            string path = Path.Combine(dataDirectory, "ProteolyticDigestion", "proteases.tsv");
+            return LoadProteaseDictionary(path);
         }
 
-        public static Dictionary<string, Protease> Dictionary { get; set; }
+        public static Dictionary<string, Protease> Dictionary
+        {
+            get => _dictionary.Value;
+            set => _dictionary = new Lazy<Dictionary<string, Protease>>(value);
+        }
 
         public static Dictionary<string, Protease> LoadProteaseDictionary(string path, List<Modification> proteaseMods = null)
         {
@@ -45,7 +51,7 @@ namespace Proteomics.ProteolyticDigestion
                     string psiMsAccessionNumber = fields[5];
                     string psiMsName = fields[6];
                     //name of the modification that is associated with proteolytic cleavage
-                    string proteaseModDetails = fields[8];  
+                    string proteaseModDetails = fields[8];
                     //if this protease has an associated modification, look it up in the list of mods loaded fro the protease mods file
                     if (proteaseModDetails != "" && proteaseMods != null)
                     {
@@ -57,14 +63,14 @@ namespace Proteomics.ProteolyticDigestion
                             {
                                 dict.Add(protease.Name, protease);
                             }
-                            else 
+                            else
                             {
                                 throw new MzLibException("More than one protease named "+ protease.Name +" exists");
                             }
-                            
+
                         }
-                        else 
-                        {                            
+                        else
+                        {
                             var protease = new Protease(name, cleavageSpecificity, psiMsAccessionNumber, psiMsName, motifList);
                             if (!dict.ContainsKey(protease.Name))
                             {
@@ -76,7 +82,7 @@ namespace Proteomics.ProteolyticDigestion
                             }
                             throw new MzLibException(proteaseModDetails + " is not a valid modification");
                         }
-                        
+
                     }
                     else
                     {
@@ -90,7 +96,7 @@ namespace Proteomics.ProteolyticDigestion
                             throw new MzLibException("More than one protease named " + protease.Name + " exists");
                         }
                     }
-                    
+
                 }
             }
 
@@ -98,6 +104,6 @@ namespace Proteomics.ProteolyticDigestion
 
         }
 
-        
+
     }
 }
