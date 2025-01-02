@@ -12,8 +12,13 @@
   
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="32.0.3" />
+    <PackageReference Include="Microsoft.XmlSerializer.Generator" Version="8.0.0" />
     <PackageReference Include="TopDownProteomics" Version="0.0.297" />
   </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.XmlSerializer.Generator" Version="8.0.0" />
+  </ItemGroup>  
 
   <ItemGroup>
     <ProjectReference Include="..\Chemistry\Chemistry.csproj" />
