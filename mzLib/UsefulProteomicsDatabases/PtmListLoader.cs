@@ -174,7 +174,7 @@ namespace UsefulProteomicsDatabases
 
             foreach (string line in specification)
             {
-                if (line.Length >= 2)
+                if ((line.Length >= 2) && (!line.StartsWith('#')))
                 {
                     string modKey = line.Substring(0, 2);
                     string modValue = null;
@@ -444,11 +444,11 @@ namespace UsefulProteomicsDatabases
                             //try // see if dictionary already contains key AnyActivationType
                             //{
                             double mm;
-                            try
+                            if (ChemicalFormula.TryParseFormula(entryKeyValue[1], out ChemicalFormula cf)) // turn chemical formula into monoisotopic mass
                             {
-                                mm = ChemicalFormula.ParseFormula(entryKeyValue[1]).MonoisotopicMass; // turn chemical formula into monoisotopic mass
+                                mm = cf.MonoisotopicMass;
                             }
-                            catch
+                            else
                             {
                                 mm = double.Parse(entryKeyValue[1], CultureInfo.InvariantCulture);
                             }
