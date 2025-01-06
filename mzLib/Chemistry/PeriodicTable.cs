@@ -60,6 +60,17 @@ namespace Chemistry
         }
 
         /// <summary>
+        /// Attempt to get an element by its atmomic symbol
+        /// </summary>
+        /// <param name="atomicSymbol">The atomic symbol</param>
+        /// <param name="element">The element, if the symbol was valid</param>
+        /// <returns>true if the symbol was valid</returns>
+        public static bool TryGetElement(string atomicSymbol, out Element element)
+        {
+            return _elements.TryGetValue(atomicSymbol, out element);
+        }
+
+        /// <summary>
         /// Fast method for getting an element by its atomic number
         /// </summary>
         public static Element GetElement(int atomicNumber)

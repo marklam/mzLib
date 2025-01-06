@@ -176,6 +176,27 @@ namespace Chemistry
         }
 
         /// <summary>
+        /// Attempts to parse a string representation of chemical formula and adds the elements
+        /// to this chemical formula.
+        /// Use brackets for isotopes (C6H12N2O -> C{13}6H12N2O)
+        /// </summary>
+        /// <param name="formula">the Chemical Formula to parse</param>
+		/// <param name="parsed">the parsed formula if successful</param>
+		/// <returns>true if the parsing succeeded</returns>
+        public static bool TryParseFormula(string formula, out ChemicalFormula parsed)
+        {
+
+            if (!ValidateFormulaRegex.IsMatch(formula))
+            {
+                parsed = null;
+                return false;
+            }
+
+            parsed = Parse(FormulaRegex.Matches(formula));
+            return true;
+        }
+
+        /// <summary>
         /// Parses a string representation of chemical formula and adds the elements
         /// to this chemical formula.
         /// Use brackets for isotopes (C6H12N2O -> C{13}6H12N2O)
@@ -183,12 +204,17 @@ namespace Chemistry
         /// <param name="formula">the Chemical Formula to parse</param>
         public static ChemicalFormula ParseFormula(string formula)
         {
+            if (!TryParseFormula(formula, out ChemicalFormula f))
+                throw new MzLibException("Input string for chemical formula was in an incorrect format: " + formula);
+            else
+                return f;
+        }
+
+        private static ChemicalFormula Parse(MatchCollection matches)
+        {
             ChemicalFormula f = new ChemicalFormula();
 
-            if (!ValidateFormulaRegex.IsMatch(formula))
-                throw new MzLibException("Input string for chemical formula was in an incorrect format: " + formula);
-
-            foreach (Match match in FormulaRegex.Matches(formula))
+            foreach (Match match in matches)
             {
                 string chemsym = match.Groups[1].Value; // Group 1: Chemical Symbol
 
@@ -546,7 +572,7 @@ namespace Chemistry
                 }
             if (right == null)
                 return new ChemicalFormula(left);
-            
+
 
             ChemicalFormula newFormula = new ChemicalFormula(left);
             newFormula.Remove(right);
