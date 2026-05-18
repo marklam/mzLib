@@ -59,11 +59,11 @@ namespace UsefulProteomicsDatabases
                 ChemicalFormula cf = new ChemicalFormula();
                 foreach (var el in mod.delta.element)
                 {
-                    try
+                    if (PeriodicTable.TryGetElement(el.symbol, out var element))
                     {
-                        cf.Add(el.symbol, int.Parse(el.number));
+                        cf.Add(element, int.Parse(el.number));
                     }
-                    catch
+                    else
                     {
                         var tempCF = ChemicalFormula.ParseFormula(DictOfElements[el.symbol]);
                         tempCF.Multiply(int.Parse(el.number));
@@ -125,11 +125,11 @@ namespace UsefulProteomicsDatabases
                             {
                                 foreach (var el in nl.element)
                                 {
-                                    try
+                                    if (PeriodicTable.TryGetElement(el.symbol, out var element))
                                     {
-                                        cfnl.Add(el.symbol, int.Parse(el.number));
+                                        cfnl.Add(element, int.Parse(el.number));
                                     }
-                                    catch
+                                    else
                                     {
                                         var tempCF = ChemicalFormula.ParseFormula(DictOfElements[el.symbol]);
                                         tempCF.Multiply(int.Parse(el.number));
