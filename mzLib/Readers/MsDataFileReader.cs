@@ -15,7 +15,6 @@ namespace Readers
         {
             { SupportedFileType.MzML, filePath => new Mzml(filePath) },
             { SupportedFileType.Mgf, filePath => new Mgf(filePath) },
-            { SupportedFileType.BrukerTimsTof, filePath => new TimsTofFileReader(filePath) },
             { SupportedFileType.Ms1Align, filePath => new Ms1Align(filePath) },
             { SupportedFileType.Ms2Align, filePath => new Ms2Align(filePath) },
         };
