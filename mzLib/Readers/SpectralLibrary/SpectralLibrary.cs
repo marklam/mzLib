@@ -11,7 +11,6 @@ using System.Text.RegularExpressions;
 using Easy.Common.Extensions;
 using Omics.Fragmentation.Peptide;
 using Omics.SpectrumMatch;
-using ThermoFisher.CommonCore.Data.Business;
 
 namespace Readers.SpectralLibrary
 {
