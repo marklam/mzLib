@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <SGenTypes>mzIdentML110.Generated.MzIdentMLType110;mzIdentML111.Generated.MzIdentMLType111;mzIdentML120.Generated.MzIdentMLType120</SGenTypes>
   </PropertyGroup>
 
