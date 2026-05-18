@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Platforms>x64</Platforms>
+    <SGenTypes>mzIdentML110.Generated.MzIdentMLType110;mzIdentML111.Generated.MzIdentMLType111;mzIdentML120.Generated.MzIdentMLType120</SGenTypes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
@@ -12,8 +13,11 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="32.0.3" />
+    <PackageReference Include="Microsoft.XmlSerializer.Generator" Version="8.0.0" />
   </ItemGroup>
-  
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.XmlSerializer.Generator" Version="8.0.0" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MassSpectrometry\MassSpectrometry.csproj" />
     <ProjectReference Include="..\MzLibUtil\MzLibUtil.csproj" />
