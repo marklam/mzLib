@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 using MassSpectrometry;
 using System.Data.SQLite;
 using Easy.Common.Extensions;
@@ -145,7 +146,7 @@ namespace Readers
 
         internal void OpenBinaryFileConnection()
         {
-            byte[] binaryFileBytePath = BrukerFileReader.ConvertStringToUTF8ByteArray(FilePath);
+            byte[] binaryFileBytePath = ConvertStringToUtf8ByteArrayWithNullTerminator(FilePath);
             if (FileType == TimsTofFileType.TDF)
                 _fileHandle = tims_open(binaryFileBytePath, 0);
             else if (FileType == TimsTofFileType.TSF)
@@ -154,6 +155,14 @@ namespace Readers
                 throw new MzLibException("Unknown file type: " + FileType);
             if (_fileHandle == null || _fileHandle == 0)
                 throw new MzLibException("Could not open the binary data (.tdf_bin or .tsf_bin) file");
+        }
+
+        private static byte[] ConvertStringToUtf8ByteArrayWithNullTerminator(string input)
+        {
+            byte[] utf8 = System.Text.Encoding.UTF8.GetBytes(input);
+            var result = new byte[utf8.Length + 1];
+            Array.Copy(utf8, result, utf8.Length);
+            return result;
         }
 
         internal void CloseBinaryFileConnection()

@@ -31,6 +31,8 @@ namespace Test
         [OneTimeSetUp]
         public void Setup()
         {
+            Readers.x64.Initializer.Initialize();
+
             Loaders.SetCultureAsInvariantCulture();
             Assert.That(Thread.CurrentThread.CurrentCulture == CultureInfo.InvariantCulture);
             Assert.That(Thread.CurrentThread.CurrentUICulture == CultureInfo.InvariantCulture);
