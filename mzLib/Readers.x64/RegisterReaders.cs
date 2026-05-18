@@ -9,6 +9,7 @@ namespace Readers.x64
         {
             MsDataFileReader.RegisterReader(SupportedFileType.ThermoRaw, filePath => new ThermoRawFileReader(filePath));
             MsDataFileReader.RegisterReader(SupportedFileType.BrukerD, filePath => new BrukerFileReader(filePath));
+            MsDataFileReader.RegisterReader(SupportedFileType.BrukerTimsTof, filePath => new TimsTofFileReader(filePath));
         }
     }
 
