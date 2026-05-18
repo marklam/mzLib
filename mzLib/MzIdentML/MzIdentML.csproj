@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Platforms>x64</Platforms>
     <SGenTypes>mzIdentML110.Generated.MzIdentMLType110;mzIdentML111.Generated.MzIdentMLType111;mzIdentML120.Generated.MzIdentMLType120</SGenTypes>
   </PropertyGroup>
 
