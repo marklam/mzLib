@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>mzLib</id>
-    <version>1.0.574</version>
+    <version>1.0.580-turbinia</version>
     <title>mzLib</title>
     <authors>Stef S.</authors>
     <owners>Stef S.</owners>
@@ -26,7 +26,6 @@
     <dependency id="SharpLearning.Optimization" version="0.28.0" />
     <dependency id="SharpZipLib" version="1.4.2" />
     <dependency id="SkiaSharp" version="2.88.9" />
-    <dependency id="System.Data.SQLite.Core" version="1.0.118" />
     <dependency id="CsvHelper" version="32.0.3" />
     <dependency id="Microsoft.Extensions.ObjectPool" version="9.0.0" />
     <dependency id="TorchSharp" version="0.105.1" />
@@ -47,7 +46,6 @@
     <dependency id="SharpLearning.Optimization" version="0.28.0" />
     <dependency id="SharpZipLib" version="1.4.2" />
     <dependency id="SkiaSharp" version="2.88.9" />
-    <dependency id="System.Data.SQLite.Core" version="1.0.118" />
     <dependency id="CsvHelper" version="32.0.3" />
     <dependency id="Microsoft.Extensions.ObjectPool" version="9.0.0" />
     <dependency id="TorchSharp" version="0.105.1" />
@@ -79,15 +77,6 @@
     <file src="UsefulProteomicsDatabases\bin\x64\Release\net10.0\UniProtKB_columnNamesForProgrammaticAccess.txt" target="lib\net10.0" />
     <file src="Readers\bin\x64\Release\net10.0\Readers.dll" target="lib\net10.0" />
     <file src="Readers\bin\x64\Release\net10.0\Readers.XmlSerializers.dll" target="lib\net10.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Readers.x64.dll" target="lib\net10.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Thermo\ThermoFisher.CommonCore.BackgroundSubtraction.dll" target="lib\net10.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Thermo\ThermoFisher.CommonCore.Data.dll" target="lib\net10.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Thermo\ThermoFisher.CommonCore.MassPrecisionEstimator.dll" target="lib\net10.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Thermo\ThermoFisher.CommonCore.RawFileReader.dll" target="lib\net10.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\timsdata.dll" target="lib\net10.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\timsdata.lib" target="lib\net10.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Bruker\msvcp110.dll" target="lib\net10.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Bruker\msvcr110.dll" target="lib\net10.0" />
     <file src="UsefulProteomicsDatabases\bin\x64\Release\net10.0\UsefulProteomicsDatabases.dll" target="lib\net10.0" />
     <file src="UsefulProteomicsDatabases\bin\x64\Release\net10.0\UsefulProteomicsDatabases.XmlSerializers.dll" target="lib\net10.0" />
     <file src="Transcriptomics\bin\x64\Release\net10.0\Transcriptomics.dll" target="lib\net10.0" />
@@ -114,15 +103,6 @@
     <file src="UsefulProteomicsDatabases\bin\x64\Release\net10.0\UniProtKB_columnNamesForProgrammaticAccess.txt" target="lib\net10.0-windows7.0" />
     <file src="Readers\bin\x64\Release\net10.0\Readers.dll" target="lib\net10.0-windows7.0" />
     <file src="Readers\bin\x64\Release\net10.0\Readers.XmlSerializers.dll" target="lib\net10.0-windows7.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Readers.x64.dll" target="lib\net10.0-windows7.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Thermo\ThermoFisher.CommonCore.BackgroundSubtraction.dll" target="lib\net10.0-windows7.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Thermo\ThermoFisher.CommonCore.Data.dll" target="lib\net10.0-windows7.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Thermo\ThermoFisher.CommonCore.MassPrecisionEstimator.dll" target="lib\net10.0-windows7.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Thermo\ThermoFisher.CommonCore.RawFileReader.dll" target="lib\net10.0-windows7.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\timsdata.dll" target="lib\net10.0-windows7.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\timsdata.lib" target="lib\net10.0-windows7.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Bruker\msvcp110.dll" target="lib\net10.0-windows7.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Bruker\msvcr110.dll" target="lib\net10.0-windows7.0" />
     <file src="UsefulProteomicsDatabases\bin\x64\Release\net10.0\UsefulProteomicsDatabases.dll" target="lib\net10.0-windows7.0" />
     <file src="UsefulProteomicsDatabases\bin\x64\Release\net10.0\UsefulProteomicsDatabases.XmlSerializers.dll" target="lib\net10.0-windows7.0" />
     <file src="Transcriptomics\bin\x64\Release\net10.0\Transcriptomics.dll" target="lib\net10.0-windows7.0" />
