@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>MzLib.Readers.x64</id>
+    <id>mzLib.Readers.x64</id>
     <version>1.0.580-turbinia</version>
-    <title>MzLib.Readers.x64</title>
+    <title>mzLib.Readers.x64</title>
     <authors>Stef S.</authors>
     <owners>Stef S.</owners>
     <license type="expression">LGPL-3.0-or-later</license>
@@ -13,18 +13,15 @@
     <tags>Chemistry Spectrometry</tags>
     <dependencies>
       <group targetFramework="net10.0">
-        <dependency id="mzLib" version="1.0.580-turbinia" />
-        <dependency id="System.Data.SQLite.Core" version="1.0.118" />
+        <dependency id="mzLib" version="1.0.580-turbinia.2" />
+        <dependency id="System.Data.SQLite.Core" version="1.0.119" />
+        <dependency id="ThermoFisher.CommonCore.RawFileReader" version="8.0.37" />
       </group>
     </dependencies>
   </metadata>
   <files>
     <file src="mzLib.png" target="images\" />
     <file src="Readers.x64\bin\x64\Release\net10.0\Readers.x64.dll" target="lib\net10.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Thermo\ThermoFisher.CommonCore.BackgroundSubtraction.dll" target="lib\net10.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Thermo\ThermoFisher.CommonCore.Data.dll" target="lib\net10.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Thermo\ThermoFisher.CommonCore.MassPrecisionEstimator.dll" target="lib\net10.0" />
-    <file src="Readers.x64\bin\x64\Release\net10.0\Thermo\ThermoFisher.CommonCore.RawFileReader.dll" target="lib\net10.0" />
     <file src="Readers.x64\bin\x64\Release\net10.0\timsdata.dll" target="lib\net10.0" />
     <file src="Readers.x64\bin\x64\Release\net10.0\timsdata.lib" target="lib\net10.0" />
     <file src="Readers.x64\bin\x64\Release\net10.0\Bruker\msvcp110.dll" target="lib\net10.0" />
